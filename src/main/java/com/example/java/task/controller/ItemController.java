@@ -19,8 +19,14 @@ public class ItemController {
     }
 
     // Add Item
-    @PostMapping
-    public ResponseEntity<?> addItem(@Valid @RequestBody Item item) {
+    @GetMapping("/add")
+    public ResponseEntity<Item> addItemUsingGet(
+            @RequestParam Long id,
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam double price
+    ) {
+        Item item = new Item(id, name, description, price);
         return ResponseEntity.ok(itemService.addItem(item));
     }
 
@@ -33,5 +39,9 @@ public class ItemController {
         }
         return ResponseEntity.ok(item);
     }
+
+
+
+
 }
 
