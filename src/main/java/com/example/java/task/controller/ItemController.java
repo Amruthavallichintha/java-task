@@ -19,16 +19,11 @@ public class ItemController {
     }
 
     // Add Item
-    @GetMapping("/add")
-    public ResponseEntity<Item> addItemUsingGet(
-            @RequestParam Long id,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam double price
-    ) {
-        Item item = new Item(id, name, description, price);
+    @PostMapping
+    public ResponseEntity<Item> addItem(@Valid @RequestBody Item item) {
         return ResponseEntity.ok(itemService.addItem(item));
     }
+
 
     // Get Item by ID
     @GetMapping("/{id}")
